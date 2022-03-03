@@ -16,10 +16,12 @@ pipeline {
     }
     stages {
         stage('Setup') {
-            // Install latest toolchains
-            sh 'rustup toolchain install stable'
-            sh 'rustup toolchain install beta'
-            sh 'rustup toolchain install nightly'
+            steps {
+                // Install latest toolchains
+                sh 'rustup toolchain install stable'
+                sh 'rustup toolchain install beta'
+                sh 'rustup toolchain install nightly'
+            }
         }
         stage('Stable - Check') {
             steps {
