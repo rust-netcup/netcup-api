@@ -2,15 +2,15 @@ pipeline {
     agent {
         kubernetes {
             yaml '''
-apiVersion: v1
-kind: Pod
-spec:
-containers:
-- name: rust
-    image: rust:latest
-    command:
-    - cat
-    tty: true
+                apiVersion: v1
+                kind: Pod
+                spec:
+                containers:
+                - name: rust
+                    image: rust:latest
+                    command:
+                    - cat
+                    tty: true
         '''
         }
     }
