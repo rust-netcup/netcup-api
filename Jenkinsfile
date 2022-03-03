@@ -16,55 +16,61 @@ containers:
     }
     stages {
         stage('Stable') {
-            stage('Debug') {
-                steps {
-                container('rust') {
-                    sh 'rustup toolchain install stable'
-                    sh 'cargo +stable build'
+            stages {
+                stage('Debug') {
+                    steps {
+                        container('rust') {
+                            sh 'rustup toolchain install stable'
+                            sh 'cargo +stable build'
+                        }
+                    }
                 }
-            }
-        }
-        stage('Release') {
-            steps {
-                container('rust') {
-                    sh 'rustup toolchain install stable'
-                    sh 'cargo +stable build --release'
-                }
-            }
-        }
-        }
-        stage('Beta') {
-            stage('Debug') {
-                steps {
-                    container('rust') {
-                        sh 'rustup toolchain install beta'
-                        sh 'cargo +beta build'
+                stage('Release') {
+                    steps {
+                        container('rust') {
+                            sh 'rustup toolchain install stable'
+                            sh 'cargo +stable build --release'
+                        }
                     }
                 }
             }
-            stage('Release') {
-                steps {
-                    container('rust') {
-                        sh 'rustup toolchain install beta'
-                        sh 'cargo +beta build --release'
+        }
+        stage('Beta') {
+            stages {
+                stage('Debug') {
+                    steps {
+                        container('rust') {
+                            sh 'rustup toolchain install beta'
+                            sh 'cargo +beta build'
+                        }
+                    }
+                }
+                stage('Release') {
+                    steps {
+                        container('rust') {
+                            sh 'rustup toolchain install beta'
+                            sh 'cargo +beta build --release'
+                        }
                     }
                 }
             }
         }
         stage('Nightly') {
-            stage('Debug') {
-                steps {
-                    container('rust') {
-                        sh 'rustup toolchain install nightly'
-                        sh 'cargo +nightly build'
+            stages {
+                stage('Debug') {
+                    steps {
+                        container('rust') {
+                            sh 'rustup toolchain install nightly'
+                            sh 'cargo +nightly build'
+                        }
                     }
                 }
-            }
-            stage('Release') {
-                steps {
-                    container('rust') {
-                        sh 'rustup toolchain install nightly'
-                        sh 'cargo +nightly build --release'
+                stage('Release') {
+                    steps {
+                        container('rust') {
+                            sh 'rustup toolchain install nightly'
+                            sh 'cargo +nightly build --release'
+                        }
                     }
                 }
             }
