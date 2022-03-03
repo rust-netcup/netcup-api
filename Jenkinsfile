@@ -5,12 +5,12 @@ pipeline {
                 apiVersion: v1
                 kind: Pod
                 spec:
-                containers:
-                - name: rust
-                    image: rust:latest
-                    command:
-                    - cat
-                    tty: true
+                    containers:
+                    - name: rust
+                      image: rust:latest
+                      command:
+                      - cat
+                      tty: true
         '''
         }
     }
