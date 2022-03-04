@@ -1,3 +1,6 @@
+# Configs
+config.toml
+
 # Rust & Cargo
 ## Target/Build output
 target/
