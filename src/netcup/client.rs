@@ -45,10 +45,8 @@ impl Client {
     /// Instead, traits are used to implement individual 'endpoints' (API actions).
     /// 
     /// ```rust
-    /// use netcup_api::*;
-    /// 
     /// // Create a request (in this case a simple string):
-    /// let dummy_request = String::from("some value");
+    /// let dummy_request = String::from(some_value);
     /// 
     /// // Construct a request object:
     /// let request = Request::<String> { // The <String> is our Request-Type
@@ -58,13 +56,7 @@ impl Client {
     /// 
     /// // We are using a String as our Request-Type and our Response-Type.
     /// // Send the request and receive a response:
-    /// let response = Client::send_request::<String, String>(request);
-    /// // `response` is a Future.  
-    /// // Use `.await` to get the actual response in an async context or
-    /// // create a tokio thread: 
-    /// let rt = tokio::runtime::Runtime::new().unwrap();
-    /// let actual_response = rt.block_on(response);
-    /// // Now it's a Result!
+    /// let response = Self::send_request::<String, String>(request).await;
     /// ```
     /// 
     /// > NOTE: **THIS REQUEST WILL FAIL. IT IS NOT VALID!**  

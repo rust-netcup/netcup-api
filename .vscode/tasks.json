@@ -205,7 +205,7 @@
         {
             "label": "Test: [Stable] Debug",
             "type": "shell",
-            "command": "cargo +stable test -- --test-threads=1",
+            "command": "cargo +stable test",
             "problemMatcher": [],
             "group": "test",
             "dependsOn": "Toolchain: Stable"
@@ -213,7 +213,7 @@
         {
             "label": "Test: [Beta] Debug",
             "type": "shell",
-            "command": "cargo +beta test -- --test-threads=1",
+            "command": "cargo +beta test",
             "problemMatcher": [],
             "group": "test",
             "dependsOn": "Toolchain: Beta"
@@ -221,7 +221,7 @@
         {
             "label": "Test: [Nightly] Debug",
             "type": "shell",
-            "command": "cargo +nightly test -- --test-threads=1",
+            "command": "cargo +nightly test",
             "problemMatcher": [],
             "group": "test",
             "dependsOn": "Toolchain: Nightly"
