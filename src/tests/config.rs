@@ -1,3 +1,6 @@
+//! These tests can fail if run in parallel!
+//! Use: `cargo test -- --test-threads=1` to run them in sequence.
+
 const CONFIG_FILE: &'static str = "target/test_config_from_tests.toml";
 const CONFIG_CONTENT: &'static str = r#"api_key = "your_api_key"
 api_password = "your_api_password"
