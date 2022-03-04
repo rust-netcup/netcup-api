@@ -6,16 +6,61 @@ use serde::{de::DeserializeOwned, Serialize};
 
 use crate::{Error, Request, Response};
 
+/// This client is used to send requests to the Netcup CCP API and parse the responses.
+/// The client is written as dynamic as possible and only features a few functions.
+/// Said functions are used for communication with the Netcup CCP API.
+/// 
+/// Furthermore, a few basic variable fields are used to store important information such as login data (api key, api secret/password, customer number) and once a login succeeded its session id.
+/// These variables will be used by subsequent requests to authenticate.
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct Client {
+    /// Netcup CCP API Key -- Read documentation on lib.rs/main-page for more information
     api_key: String,
+    /// Netcup CCP API Secret/Password -- Read documentation on lib.rs/main-page for more information
     api_password: String,
+    /// Netcup CCP Customer Number
     customer_number: u32,
+    /// Netcup CCP Session ID
     api_session_id: String,
 }
 
 impl Client {
+    /// Used to send a request to Netcup's CCP API using JSON.
+    /// This function is dynamically written, make sure to use the correct Request- and Response-Types.
+    /// Parsing errors are most likely caused by the wrong Request- or Response-Type.
+    /// 
+    /// Netcup's CCP API uses a single endpoint for all JSON requests:
+    /// <https://ccp.netcup.net/run/webservice/servers/endpoint.php?JSON>
+    /// 
+    /// It is expected to send a valid JSON-formatted request to said endpoint.
+    /// The class `Request` is used to mirror this structure and is exclusively used by this function.
+    /// Similarly, the class `Response` is used to mirror any responses from the API.
+    /// 
+    /// Make sure to check the documentation on both structs for more information.
+    /// 
+    /// # Usage
+    /// 
+    /// This function rarely if ever should be called directly.  
+    /// Instead, traits are used to implement individual 'endpoints' (API actions).
+    /// 
+    /// ```rust
+    /// // Create a request (in this case a simple string):
+    /// let dummy_request = String::from(some_value);
+    /// 
+    /// // Construct a request object:
+    /// let request = Request::<String> { // The <String> is our Request-Type
+    ///     action: String::from("dummy"),
+    ///     param: dummy_request,
+    /// };
+    /// 
+    /// // We are using a String as our Request-Type and our Response-Type.
+    /// // Send the request and receive a response:
+    /// let response = Self::send_request::<String, String>(request).await?;
+    /// ```
+    /// 
+    /// > NOTE: **THIS REQUEST WILL FAIL. IT IS NOT VALID!**  
+    /// > It is only an example on _how_ to use this function.
     pub async fn send_request<RequestType: Serialize, ResponseType: DeserializeOwned>(
         request: Request<RequestType>,
     ) -> Result<Response<ResponseType>, Error> {
