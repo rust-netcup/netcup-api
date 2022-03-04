@@ -26,7 +26,7 @@
 //! ```toml
 //! api_key = "your_api_key"
 //! api_password = "your_api_password"
-//! customer_number = "your_customer_number"
+//! customer_number = your_customer_number
 //! ``` 
 //! 
 //! ## Using this library
