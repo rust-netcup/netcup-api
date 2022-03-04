@@ -1,7 +1,7 @@
 use serde_derive::{Deserialize, Serialize};
 
 /// A struct mirroring Netcup's API.
-/// Use this as a base for creating requests.
+/// Use this as a base for parsing responses.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Response<T> {
     /// A unique ID for the request.  
