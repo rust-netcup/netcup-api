@@ -56,7 +56,7 @@ pipeline {
         stage('Test - Stable') {
             steps {
                 container('rust') {
-                    sh 'cargo +stable test'
+                    sh 'cargo +stable test -- --test-threads=1'
                 }
             }
         }
@@ -64,7 +64,7 @@ pipeline {
             steps {
                 container('rust') {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        sh 'cargo +beta test'
+                        sh 'cargo +beta test -- --test-threads=1'
                     }
                 }
             }
@@ -73,7 +73,7 @@ pipeline {
             steps {
                 container('rust') {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        sh 'cargo +nightly test'
+                        sh 'cargo +nightly test -- --test-threads=1'
                     }
                 }
             }
