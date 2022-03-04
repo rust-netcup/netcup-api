@@ -1,6 +1,6 @@
 use serde_derive::{Deserialize, Serialize};
 
-/// A struct mirroring Netcup's CCP API.
+/// A struct mirroring Netcup's API.
 /// Use this as a base for creating requests.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Request<T> {

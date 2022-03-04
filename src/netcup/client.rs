@@ -6,18 +6,18 @@ use serde::{de::DeserializeOwned, Serialize};
 
 use crate::{Error, Request, Response};
 
-/// This client is used to send requests to the Netcup CCP API and parse the responses.
+/// This client is used to send requests to the Netcup API and parse the responses.
 /// The client is written as dynamic as possible and only features a few functions.
-/// Said functions are used for communication with the Netcup CCP API.
+/// Said functions are used for communication with the Netcup API.
 /// 
 /// Furthermore, a few basic variable fields are used to store important information such as login data (api key, api secret/password, customer number) and once a login succeeded its session id.
 /// These variables will be used by subsequent requests to authenticate.
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct Client {
-    /// Netcup CCP API Key -- Read documentation on lib.rs/main-page for more information
+    /// Netcup API Key -- Read documentation on lib.rs/main-page for more information
     api_key: String,
-    /// Netcup CCP API Secret/Password -- Read documentation on lib.rs/main-page for more information
+    /// Netcup API Secret/Password -- Read documentation on lib.rs/main-page for more information
     api_password: String,
     /// Netcup CCP Customer Number
     customer_number: u32,
@@ -26,11 +26,11 @@ pub struct Client {
 }
 
 impl Client {
-    /// Used to send a request to Netcup's CCP API using JSON.
+    /// Used to send a request to Netcup's API using JSON.
     /// This function is dynamically written, make sure to use the correct Request- and Response-Types.
     /// Parsing errors are most likely caused by the wrong Request- or Response-Type.
     /// 
-    /// Netcup's CCP API uses a single endpoint for all JSON requests:
+    /// Netcup's API uses a single endpoint for all JSON requests:
     /// <https://ccp.netcup.net/run/webservice/servers/endpoint.php?JSON>
     /// 
     /// It is expected to send a valid JSON-formatted request to said endpoint.
@@ -104,7 +104,7 @@ impl Client {
         // Everything between 3000 and 4000 is a client-side error message.
         // -> I.e. either this library does something wrong or (after validations and such) the provided login data is invalid.
         // Everything between 4000 and 5000 is a server-side error message.
-        // -> I.e. most likely an issue at Netcup's CCP API. Server overload, API changes, etc.
+        // -> I.e. most likely an issue at Netcup's API. Server overload, API changes, etc.
         if response_base_object.status_code >= 2000 && response_base_object.status_code < 3000 {
             // Success
             Ok(serde_json::from_str::<Response<ResponseType>>(&response_json).map_err(|e| e.to_string())?)

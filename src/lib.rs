@@ -1,5 +1,5 @@
 // --- Docs ---
-//! A simple library for working with the Netcup CCP API.
+//! A simple library for working with the Netcup API.
 //! 
 //! # Credentials
 //! To use this library you need to have a valid Netcup account and three things:
@@ -33,9 +33,9 @@
 //! 
 //! For ease of use, please make sure that if you package this library, you include a description on how to create and get the above information, link to this article or copy-and-paste it into your documentation.
 //! 
-//! # Netcup's CCP API
+//! # Netcup's API
 //! 
-//! The Netcup's CCP API is a RESTful API that has several endpoints.  
+//! The Netcup's API is a RESTful API that has several endpoints.  
 //! The primary function is to handle domains and DNS entries.  
 //! 
 //! This library only uses JSON, but other protocols are also supported ([see here](https://www.netcup-wiki.de/wiki/CCP_API#API-Endpoint)).  
@@ -84,7 +84,7 @@
 //! 
 //! ## Status Codes
 //! 
-//! Netcup's CCP API uses three categories of status codes:
+//! Netcup's API uses three categories of status codes:
 //! 
 //! - 2000-2999: Success
 //! - 3000-3999: Client-Side Error (e.g. invalid credentials)
@@ -95,7 +95,7 @@
 #[cfg(test)]
 mod tests;
 
-// --- NetCup CCP API ---
+// --- NetCup API ---
 mod netcup;
 pub use netcup::*;
 
