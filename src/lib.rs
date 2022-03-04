@@ -8,3 +8,8 @@ pub use netcup::*;
 
 // --- Lib Root definitions ---
 type Error = String;
+
+#[allow(dead_code)]
+type NetcupClient = Client;
+#[allow(dead_code)]
+type CCPClient = Client;
