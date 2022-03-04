@@ -7,6 +7,12 @@ assignees: Sakul6499
 
 ---
 
+<!--
+In case a heading doesn't fit your needs (e.g. Logs) please use 'N/A' as a value.
+
+In case a heading doesn't fit you at all and you find another, alternative, heading more useful/fitting: Please change them! This is just a template.
+-->
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
