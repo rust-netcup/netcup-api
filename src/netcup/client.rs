@@ -56,7 +56,7 @@ impl Client {
     /// 
     /// // We are using a String as our Request-Type and our Response-Type.
     /// // Send the request and receive a response:
-    /// let response = Self::send_request::<String, String>(request).await?;
+    /// let response = Self::send_request::<String, String>(request).await;
     /// ```
     /// 
     /// > NOTE: **THIS REQUEST WILL FAIL. IT IS NOT VALID!**  
