@@ -80,7 +80,7 @@
 //! Once again, `responsedata` can be anything. 
 //! Most of the time it'll be a nested JSON Object.
 //! 
-//! The whole documentation on all the actions can be found [here](https://www.netcup-wiki.de/wiki/CCP_API#Actions).
+//! The whole documentation on all the actions can be found [here](https://ccp.netcup.net/run/webservice/servers/endpoint.php).
 //! 
 //! ## Status Codes
 //! 
