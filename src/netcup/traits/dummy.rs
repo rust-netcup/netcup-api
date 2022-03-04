@@ -2,6 +2,10 @@ use async_trait::async_trait;
 
 use crate::{Error, Request, Response, Client};
 
+/// A dummy trait used to test the Client and as an example for how to implement actions. 
+/// 
+/// Using this trait **will result in errors**.  
+/// **This is not a valid request and should not be used in production**.
 #[async_trait]
 pub trait Dummy {
     async fn dummy(
@@ -11,7 +15,10 @@ pub trait Dummy {
 
 #[async_trait]
 impl Dummy for Client {
-        async fn dummy(
+    /// Send a dummy request to the API.  
+    /// Using this **will result in errors**.  
+    /// **This is not a valid request and should not be used in production**.
+    async fn dummy(
         some_value: &str,
     ) -> Result<Response<String>, Error> {
         let dummy_request = String::from(some_value);
