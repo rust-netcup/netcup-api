@@ -1,0 +1,350 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "cargo clean",
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Build: [Stable] Debug",
+            "type": "shell",
+            "command": "cargo +stable build",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Build: [Beta] Debug",
+            "type": "shell",
+            "command": "cargo +beta build",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Build: [Nightly] Debug",
+            "type": "shell",
+            "command": "cargo +nightly build",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Build: [Stable] Release",
+            "type": "shell",
+            "command": "cargo +stable build --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Build: [Beta] Release",
+            "type": "shell",
+            "command": "cargo +beta build --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Build: [Nightly] Release",
+            "type": "shell",
+            "command": "cargo +nightly build --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Check: [Stable] Debug",
+            "type": "shell",
+            "command": "cargo +stable check",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Check: [Beta] Debug",
+            "type": "shell",
+            "command": "cargo +beta check",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Check: [Nightly] Debug",
+            "type": "shell",
+            "command": "cargo +nightly check",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Check: [Stable] Release",
+            "type": "shell",
+            "command": "cargo +stable check --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Check: [Beta] Release",
+            "type": "shell",
+            "command": "cargo +beta check --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Check: [Nightly] Release",
+            "type": "shell",
+            "command": "cargo +nightly check --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Documentation: [Stable] Debug",
+            "type": "shell",
+            "command": "cargo +stable doc",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Documentation: [Beta] Debug",
+            "type": "shell",
+            "command": "cargo +beta doc",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Documentation: [Nightly] Debug",
+            "type": "shell",
+            "command": "cargo +nightly doc",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Documentation: [Stable] Release",
+            "type": "shell",
+            "command": "cargo +stable doc --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Documentation: [Beta] Release",
+            "type": "shell",
+            "command": "cargo +beta doc --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Documentation: [Nightly] Release",
+            "type": "shell",
+            "command": "cargo +nightly doc --release",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Documentation & Open: [Stable] Debug",
+            "type": "shell",
+            "command": "cargo +stable doc --open",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Documentation & Open: [Beta] Debug",
+            "type": "shell",
+            "command": "cargo +beta doc --open",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Documentation & Open: [Nightly] Debug",
+            "type": "shell",
+            "command": "cargo +nightly doc --open",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Documentation & Open: [Stable] Release",
+            "type": "shell",
+            "command": "cargo +stable doc --release --open",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Documentation & Open: [Beta] Release",
+            "type": "shell",
+            "command": "cargo +beta doc --release --open",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Documentation & Open: [Nightly] Release",
+            "type": "shell",
+            "command": "cargo +nightly doc --release --open",
+            "problemMatcher": [],
+            "group": "build",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Test: [Stable] Debug",
+            "type": "shell",
+            "command": "cargo +stable test",
+            "problemMatcher": [],
+            "group": "test",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Test: [Beta] Debug",
+            "type": "shell",
+            "command": "cargo +beta test",
+            "problemMatcher": [],
+            "group": "test",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Test: [Nightly] Debug",
+            "type": "shell",
+            "command": "cargo +nightly test",
+            "problemMatcher": [],
+            "group": "test",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Test: [Stable] Release",
+            "type": "shell",
+            "command": "cargo +stable test --release",
+            "problemMatcher": [],
+            "group": "test",
+            "dependsOn": "Toolchain: Stable"
+        },
+        {
+            "label": "Test: [Beta] Release",
+            "type": "shell",
+            "command": "cargo +beta test --release",
+            "problemMatcher": [],
+            "group": "test",
+            "dependsOn": "Toolchain: Beta"
+        },
+        {
+            "label": "Test: [Nightly] Release",
+            "type": "shell",
+            "command": "cargo +nightly test --release",
+            "problemMatcher": [],
+            "group": "test",
+            "dependsOn": "Toolchain: Nightly"
+        },
+        {
+            "label": "Toolchain: Stable",
+            "type": "shell",
+            "command": "rustup toolchain install stable",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Toolchain: Beta",
+            "type": "shell",
+            "command": "rustup toolchain install beta",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Toolchain: Nightly",
+            "type": "shell",
+            "command": "rustup toolchain install nightly",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Build & Test Everything",
+            "group": "build",
+            "dependsOn": [
+                "Build: [Stable] Debug",
+                "Build: [Beta] Debug",
+                "Build: [Nightly] Debug",
+                "Build: [Stable] Release",
+                "Build: [Beta] Release",
+                "Build: [Nightly] Release",
+                "Check: [Stable] Debug",
+                "Check: [Beta] Debug",
+                "Check: [Nightly] Debug",
+                "Check: [Stable] Release",
+                "Check: [Beta] Release",
+                "Check: [Nightly] Release",
+                "Documentation: [Stable] Debug",
+                "Documentation: [Beta] Debug",
+                "Documentation: [Nightly] Debug",
+                "Documentation: [Stable] Release",
+                "Documentation: [Beta] Release",
+                "Documentation: [Nightly] Release",
+                "Test: [Stable] Debug",
+                "Test: [Beta] Debug",
+                "Test: [Nightly] Debug",
+                "Test: [Stable] Release",
+                "Test: [Beta] Release",
+                "Test: [Nightly] Release"
+            ]
+        },
+        {
+            "label": "Build Everything",
+            "group": "build",
+            "dependsOn": [
+                "Build: [Stable] Debug",
+                "Build: [Beta] Debug",
+                "Build: [Nightly] Debug",
+                "Build: [Stable] Release",
+                "Build: [Beta] Release",
+                "Build: [Nightly] Release"
+            ]
+        },
+        {
+            "label": "Check Everything",
+            "group": "build",
+            "dependsOn": [
+                "Check: [Stable] Debug",
+                "Check: [Beta] Debug",
+                "Check: [Nightly] Debug",
+                "Check: [Stable] Release",
+                "Check: [Beta] Release",
+                "Check: [Nightly] Release"
+            ]
+        },
+        {
+            "label": "Documentation Everything",
+            "group": "build",
+            "dependsOn": [
+                "Documentation: [Stable] Debug",
+                "Documentation: [Beta] Debug",
+                "Documentation: [Nightly] Debug",
+                "Documentation: [Stable] Release",
+                "Documentation: [Beta] Release",
+                "Documentation: [Nightly] Release"
+            ]
+        },
+        {
+            "label": "Test Everything",
+            "group": "test",
+            "dependsOn": [
+                "Test: [Stable] Debug",
+                "Test: [Beta] Debug",
+                "Test: [Nightly] Debug",
+                "Test: [Stable] Release",
+                "Test: [Beta] Release",
+                "Test: [Nightly] Release"
+            ]
+        }
+    ]
+}
