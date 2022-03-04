@@ -28,6 +28,6 @@ jobs:
       uses: actions/upload-artifact@v3.0.0
       with:
         name: debug
-        path: "*.d *.pdb *.dll *.lib *.rlib"
+        path: target/
         if-no-files-found: error
         retention-days: 90
