@@ -2,17 +2,16 @@ name: Rust
 
 on:
   push:
-    branches: [ main ]
-    tags: [ 'v*.*.*' ]
+    branches: [main]
+    tags: ["v*.*.*"]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,36 +24,39 @@ jobs:
           - target: x86_64-apple-darwin
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Install Cross
-      run: cargo install cross
-    
-    - name: Run Check
-      run: cross check --verbose --target ${{ matrix.target }}
+      - name: Install dependencies
+        run: apt-get install -y libssl-dev
 
-    - name: Run Tests
-      run: cross test --verbose --target ${{ matrix.target }}
+      - name: Install Cross
+        run: cargo install cross
 
-    - name: Build Debug
-      run: cross build --verbose --target ${{ matrix.target }}
+      - name: Run Check
+        run: cross check --verbose --target ${{ matrix.target }}
 
-    - name: Build Release
-      run: cross build --verbose --target ${{ matrix.target }}
-    
-    - name: Build Docs
-      run: cross doc --verbose --target ${{ matrix.target }}
+      - name: Run Tests
+        run: cross test --verbose --target ${{ matrix.target }}
 
-    - name: Generate ZIP from target
-      run: zip -r target.zip target/*
+      - name: Build Debug
+        run: cross build --verbose --target ${{ matrix.target }}
 
-    - name: Build docs
-      run: cargo doc --verbose
+      - name: Build Release
+        run: cross build --verbose --target ${{ matrix.target }}
 
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.0.0
-      with:
-        name: target.zip
-        path: target.zip
-        if-no-files-found: error
-        retention-days: 90
+      - name: Build Docs
+        run: cross doc --verbose --target ${{ matrix.target }}
+
+      - name: Generate ZIP from target
+        run: zip -r target.zip target/*
+
+      - name: Build docs
+        run: cargo doc --verbose
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: target.zip
+          path: target.zip
+          if-no-files-found: error
+          retention-days: 90
