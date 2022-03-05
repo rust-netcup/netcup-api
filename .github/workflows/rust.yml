@@ -52,19 +52,19 @@ jobs:
           target: ${{ matrix.target }}
 
       - name: Run Check
-        run: cross check --verbose --target ${{ matrix.target }} 
+        run: cargo check --verbose --target ${{ matrix.target }} 
 
       - name: Run Tests
-        run: cross test --verbose --target ${{ matrix.target }} $DOCTEST_XCOMPILE
+        run: cargo test --verbose --target ${{ matrix.target }} $DOCTEST_XCOMPILE
 
       - name: Build Debug
-        run: cross build --verbose --target ${{ matrix.target }} 
+        run: cargo build --verbose --target ${{ matrix.target }} 
 
       - name: Build Release
-        run: cross build --verbose --target ${{ matrix.target }} 
+        run: cargo build --verbose --target ${{ matrix.target }} 
 
       - name: Build Docs
-        run: cross doc --verbose --target ${{ matrix.target }} 
+        run: cargo doc --verbose --target ${{ matrix.target }} 
 
       - name: Generate ZIP from target
         run: zip -r target.zip target/*
