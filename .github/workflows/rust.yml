@@ -48,6 +48,9 @@ jobs:
     - name: Generate ZIP from target
       run: zip -r target.zip target/*
 
+    - name: Build docs
+      run: cargo doc --verbose
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.0.0
       with:
