@@ -13,58 +13,23 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: aarch64-unknown-linux-gnu 	
-          - target: arm-unknown-linux-gnueabi 	
-          - target: armv5te-unknown-linux-gnueabi 	
-          - target: armv7-unknown-linux-gnueabi 	
-          - target: armv7-unknown-linux-gnueabihf 	
-          - target: i586-unknown-linux-gnu 	
-          - target: i686-unknown-linux-gnu 	
-          - target: mips-unknown-linux-gnu 
-          - target: mips64-unknown-linux-gnuabi64 
-          - target: mips64el-unknown-linux-gnuabi64 	
-          - target: mipsel-unknown-linux-gnu 	
-          - target: mipsisa32r6el-unknown-linux-gnu
-          - target: mipsisa64r6el-unknown-linux-gnuabi64 
-          - target: powerpc-unknown-linux-gnu 	
-          - target: powerpc64-unknown-linux-gnu 
-          - target: powerpc64le-unknown-linux-gnu 	
-          - target: riscv64gc-unknown-linux-gnu 	
-          - target: s390x-unknown-linux-gnu 	
-          - target: sparc64-unknown-linux-gnu 
-          - target: thumbv7neon-unknown-linux-gnueabihf 	
-          - target: x86_64-unknown-linux-gnu 	
-
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Rust
-        run: rustup update stable
-
-      - name: Install cross-compilation tools
-        uses: taiki-e/setup-cross-toolchain-action@v1
-        with:
-          target: ${{ matrix.target }}
-
       - name: Run Check
-        run: cargo check --verbose --target ${{ matrix.target }} 
+        run: cargo check --verbose
 
       - name: Run Tests
-        run: cargo test --verbose --target ${{ matrix.target }} $DOCTEST_XCOMPILE
+        run: cargo test --verbose
 
       - name: Build Debug
-        run: cargo build --verbose --target ${{ matrix.target }} 
+        run: cargo build --verbose
 
       - name: Build Release
-        run: cargo build --verbose --target ${{ matrix.target }} 
+        run: cargo build --verbose
 
       - name: Build Docs
-        run: cargo doc --verbose --target ${{ matrix.target }} 
+        run: cargo doc --verbose
 
       - name: Generate ZIP from target
         run: zip -r target.zip target/*
