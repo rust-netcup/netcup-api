@@ -18,40 +18,59 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: x86_64-pc-windows-gnu
-          - target: x86_64-unknown-linux-musl
-          - target: x86_64-unknown-linux-gnu
-          - target: x86_64-apple-darwin
+          - target: aarch64-unknown-linux-gnu 	
+          - target: arm-unknown-linux-gnueabi 	
+          - target: armv5te-unknown-linux-gnueabi 	
+          - target: armv7-unknown-linux-gnueabi 	
+          - target: armv7-unknown-linux-gnueabihf 	
+          - target: i586-unknown-linux-gnu 	
+          - target: i686-unknown-linux-gnu 	
+          - target: mips-unknown-linux-gnu 
+          - target: mips64-unknown-linux-gnuabi64 
+          - target: mips64el-unknown-linux-gnuabi64 	
+          - target: mipsel-unknown-linux-gnu 	
+          - target: mipsisa32r6el-unknown-linux-gnu
+          - target: mipsisa64r6el-unknown-linux-gnuabi64 
+          - target: powerpc-unknown-linux-gnu 	
+          - target: powerpc64-unknown-linux-gnu 
+          - target: powerpc64le-unknown-linux-gnu 	
+          - target: riscv64gc-unknown-linux-gnu 	
+          - target: s390x-unknown-linux-gnu 	
+          - target: sparc64-unknown-linux-gnu 
+          - target: thumbv7neon-unknown-linux-gnueabihf 	
+          - target: x86_64-unknown-linux-gnu 	
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: apt-get install -y libssl-dev
+      - name: Install Rust
+        run: rustup update stable
 
-      - name: Install Cross
-        run: cargo install cross
+      - name: Install cross-compilation tools
+        uses: taiki-e/setup-cross-toolchain-action@v1
+        with:
+          target: ${{ matrix.target }}
 
       - name: Run Check
-        run: cross check --verbose --target ${{ matrix.target }}
+        run: cross check --verbose --target ${{ matrix.target }} 
 
       - name: Run Tests
-        run: cross test --verbose --target ${{ matrix.target }}
+        run: cross test --verbose --target ${{ matrix.target }} $DOCTEST_XCOMPILE
 
       - name: Build Debug
-        run: cross build --verbose --target ${{ matrix.target }}
+        run: cross build --verbose --target ${{ matrix.target }} 
 
       - name: Build Release
-        run: cross build --verbose --target ${{ matrix.target }}
+        run: cross build --verbose --target ${{ matrix.target }} 
 
       - name: Build Docs
-        run: cross doc --verbose --target ${{ matrix.target }}
+        run: cross doc --verbose --target ${{ matrix.target }} 
 
       - name: Generate ZIP from target
         run: zip -r target.zip target/*
 
       - name: Build docs
-        run: cargo doc --verbose
+        run: cargo doc --verbose 
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.0.0
