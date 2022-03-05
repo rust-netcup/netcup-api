@@ -15,19 +15,43 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-pc-windows-gnu
+          - target: x86_64-unknown-linux-musl
+          - target: x86_64-unknown-linux-gnu
+          - target: x86_64-apple-darwin
+
     steps:
     - uses: actions/checkout@v3
+
+    - name: Install Cross
+      run: cargo install cross
     
-    - name: Build
-      run: cargo build --verbose
+    - name: Run Check
+      run: cross check --verbose --target ${{ matrix.target }}
+
+    - name: Run Tests
+      run: cross test --verbose --target ${{ matrix.target }}
+
+    - name: Build Debug
+      run: cross build --verbose --target ${{ matrix.target }}
+
+    - name: Build Release
+      run: cross build --verbose --target ${{ matrix.target }}
     
-    - name: Run tests
-      run: cargo test --verbose
+    - name: Build Docs
+      run: cross doc --verbose --target ${{ matrix.target }}
+
+    - name: Generate ZIP from target
+      run: zip -r target.zip target/*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.0.0
       with:
-        name: target
-        path: target/
+        name: target.zip
+        path: target.zip
         if-no-files-found: error
         retention-days: 90
