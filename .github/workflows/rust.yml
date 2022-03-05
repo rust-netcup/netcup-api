@@ -2,24 +2,45 @@ name: Rust
 
 on:
   push:
-    branches: [ main ]
-    tags: [ 'v*.*.*' ]
+    branches: [main]
+    tags: ["v*.*.*"]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
-    - name: Build docs
-      run: cargo doc --verbose
+      - uses: actions/checkout@v3
+
+      - name: Run Check
+        run: cargo check --verbose
+
+      - name: Run Tests
+        run: cargo test --verbose
+
+      - name: Build Debug
+        run: cargo build --verbose
+
+      - name: Build Release
+        run: cargo build --verbose
+
+      - name: Build Docs
+        run: cargo doc --verbose
+
+      - name: Generate ZIP from target
+        run: zip -r target.zip target/*
+
+      - name: Build docs
+        run: cargo doc --verbose 
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: target.zip
+          path: target.zip
+          if-no-files-found: error
+          retention-days: 90
